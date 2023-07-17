@@ -1,11 +1,13 @@
 public class Planet {
-    static final double G = 6.67e-11;
+    private static final double G = 6.67e-11;
     public double xxPos;
     public double yyPos;
     public double xxVel;
     public double yyVel;
     public double mass;
     public String imgFileName;
+
+    public static double getG() { return G; }
 
     public Planet(double xp, double yp, double xv, double yv, double m, String img) {
         this.xxPos = xp;
@@ -70,7 +72,7 @@ public class Planet {
         return ans;
     }
 
-    public boolean equals(Planet p) {
+    private boolean equals(Planet p) {
         return this == p;
     }
 

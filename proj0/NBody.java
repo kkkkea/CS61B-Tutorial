@@ -7,9 +7,9 @@ public class NBody {
 
     public static Planet[] readPlanets(String path) {
         In reader = new In(path);
-        reader.readInt();
+        int n = reader.readInt();
         reader.readDouble();
-        Planet[] res = new Planet[5];
+        Planet[] res = new Planet[n];
 
         double xp;
         double yp;
@@ -18,7 +18,7 @@ public class NBody {
         double m;
         String im;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < res.length; i++) {
             xp = reader.readDouble();
             yp = reader.readDouble();
             xv = reader.readDouble();
@@ -40,16 +40,17 @@ public class NBody {
         StdDraw.setScale(-radius, radius);
         StdDraw.enableDoubleBuffering();
         double time = 0;
-        double[] xForce = new double[5];
-        double[] yForce = new double[5];
+        int pausetime = 10;
+        double[] xForce = new double[planets.length];
+        double[] yForce = new double[planets.length];
         while (time < T) {
             StdDraw.clear();
-            for (int i = 0; i < 5; ++i) {
+            for (int i = 0; i < planets.length; ++i) {
                 xForce[i] = planets[i].calcNetForceExertedByX(planets);
                 yForce[i] = planets[i].calcNetForceExertedByY(planets);
             }
 
-            for (int i = 0; i < 5; ++i) {
+            for (int i = 0; i < planets.length; ++i) {
                 planets[i].update(dt, xForce[i], yForce[i]);
             }
 
@@ -58,7 +59,7 @@ public class NBody {
                 p.draw();
             }
             StdDraw.show();
-            StdDraw.pause(10);
+            StdDraw.pause(pausetime);
             time += dt;
         }
 

@@ -14,6 +14,6 @@ public class TestPlanet {
         Planet p = new Planet(0, 0, 0, 0, 1, null);
         Planet p1 = new Planet(3, 4, 0, 0, 1, null);
 
-        checkEquals(Planet.G / 25, p.calcForceExertedBy(p1), "pairwise force", 0.01);
+        checkEquals(Planet.getG() / 25, p.calcForceExertedBy(p1), "pairwise force", 0.01);
     }
 }
