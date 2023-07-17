@@ -7,8 +7,6 @@ public class Planet {
     public double mass;
     public String imgFileName;
 
-    public static double getG() { return G; }
-
     public Planet(double xp, double yp, double xv, double yv, double m, String img) {
         this.xxPos = xp;
         this.yyPos = yp;
