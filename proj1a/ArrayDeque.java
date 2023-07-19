@@ -10,7 +10,7 @@ public class ArrayDeque<T> {
     private void resize(int s) {
         T[] tmp = (T[]) new Object[s];
 
-        for (int i = nextFirst + 1, j = 0; (i % arr.length) < nextLast; ++i, ++j) {
+        for (int i = nextFirst + 1, j = 0, k = 0; k < size; i = (i + 1) % arr.length, ++j, ++k) {
             tmp[j] = arr[i];
         }
         arr = tmp;
