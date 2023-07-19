@@ -1,5 +1,3 @@
-import com.sun.scenario.effect.impl.state.LinearConvolveKernel;
-
 public class LinkedListDeque<T> {
     private static class Node<T> {
         private T item;
@@ -28,15 +26,15 @@ public class LinkedListDeque<T> {
         sentinel.next = sentinel;
     }
 
-    public LinkedListDeque(T... items) {
-        this.size = 0;
-        this.sentinel = new Node<>();
-        sentinel.pre = sentinel;
-        sentinel.next = sentinel;
-        for (int i = 0; i < items.length; ++i) {
-            this.addLast(items[i]);
-        }
-    }
+//    public LinkedListDeque(T... items) {
+//        this.size = 0;
+//        this.sentinel = new Node<>();
+//        sentinel.pre = sentinel;
+//        sentinel.next = sentinel;
+//        for (int i = 0; i < items.length; ++i) {
+//            this.addLast(items[i]);
+//        }
+//    }
 
     public int size() {
         return size;
