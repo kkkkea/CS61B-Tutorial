@@ -7,8 +7,8 @@ public class ArrayDeque<T> {
 
     private T[] arr;
 
-    private void resize(int size) {
-        T[] tmp = (T[]) new Object[size];
+    private void resize(int s) {
+        T[] tmp = (T[]) new Object[s];
 
         for (int i = first, j = 0; (i % arr.length) <= last; ++i, ++j) {
             tmp[j] = arr[i];
@@ -65,7 +65,7 @@ public class ArrayDeque<T> {
 
         T res = arr[first];
         arr[first] = null;
-        first = (first + 1) %arr.length;
+        first = (first + 1) % arr.length;
         --size;
         return res;
     }

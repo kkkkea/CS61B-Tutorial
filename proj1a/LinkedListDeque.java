@@ -1,3 +1,5 @@
+import com.sun.scenario.effect.impl.state.LinearConvolveKernel;
+
 public class LinkedListDeque<T> {
     private static class Node<T> {
         private T item;
@@ -24,6 +26,16 @@ public class LinkedListDeque<T> {
         this.sentinel = new Node<>();
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
+    }
+
+    public LinkedListDeque(T... items) {
+        this.size = 0;
+        this.sentinel = new Node<>();
+        sentinel.pre = sentinel;
+        sentinel.next = sentinel;
+        for (int i = 0; i < items.length; ++i) {
+            this.addLast(items[i]);
+        }
     }
 
     public int size() {
@@ -58,6 +70,10 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
+
         T res = sentinel.next.item;
 
         sentinel.next = sentinel.next.next;
@@ -67,10 +83,15 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
+
         T res = sentinel.pre.item;
 
         sentinel.pre = sentinel.pre.pre;
         sentinel.pre.next = sentinel;
+        --size;
         return res;
     }
 

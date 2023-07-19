@@ -1,6 +1,41 @@
 /** Performs some basic linked list tests. */
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 public class LinkedListDequeTest {
-	
+
+	@Test
+	public void constructorTeset() {
+		LinkedListDeque<Integer> list = new LinkedListDeque<>(1, 2, 3, 4, 5, 6);
+		list.printDeque();
+	}
+
+	@Test
+	public void  addFirstTest() {
+		LinkedListDeque<Integer> L = new LinkedListDeque<>();
+		LinkedListDeque<Integer> expected = new LinkedListDeque<>(3, 2, 1);
+		L.addFirst(1);
+		L.addFirst(2);
+		L.addFirst(3);
+		assertEquals(expected, L);
+	}
+
+	@Test
+	public void isEmptyTest() {
+		LinkedListDeque L = new LinkedListDeque<>();
+		assertTrue(L.isEmpty());
+
+		L.addLast(3);
+		L.addLast(3);
+		L.addLast(3);
+		assertFalse(L.isEmpty());
+
+		L.removeLast();
+		L.removeLast();
+		L.removeLast();
+		assertTrue(L.isEmpty());
+	}
+
 	/* Utility method for printing out empty checks. */
 	public static boolean checkEmpty(boolean expected, boolean actual) {
 		if (expected != actual) {
