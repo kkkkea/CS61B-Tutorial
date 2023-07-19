@@ -1,4 +1,7 @@
 import org.junit.Test;
+
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 public class ArrayDequeTest {
@@ -30,19 +33,12 @@ public class ArrayDequeTest {
     }
 
     @Test
-    public void getTest() {
+    public void addAndGetTest() {
         ArrayDeque<Integer> deque = new ArrayDeque<>();
-        deque.addFirst(3);
-        deque.addFirst(8);
-        deque.addFirst(2);
-        deque.addLast(4);
-        deque.addLast(6);
-        deque.addLast(5);
-        deque.addLast(4);
-
-        int actual = deque.get(0);
-        assertEquals(2, actual);
-        int actual1 = deque.get(1);
-        assertEquals(8, actual1);
+        for (int i = 0; i < 8; ++i) {
+            deque.addLast(i);
+        }
+        int actual = deque.get(7);
+        assertEquals(7, actual);
     }
 }
