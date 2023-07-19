@@ -1,25 +1,26 @@
 public class ArrayDeque<T> {
     private int size;
 
-    private int first;
+    private int nextFirst;
 
-    private int last;
+    private int nextLast;
 
     private T[] arr;
 
     private void resize(int s) {
         T[] tmp = (T[]) new Object[s];
 
-        for (int i = first, j = 0; (i % arr.length) <= last; ++i, ++j) {
+        for (int i = nextFirst + 1, j = 0; (i % arr.length) < nextLast; ++i, ++j) {
             tmp[j] = arr[i];
         }
         arr = tmp;
-        first = 0;
-        last = size - 1;
+        nextFirst = arr.length - 1;
+        nextLast = size;
     }
 
     public ArrayDeque() {
-        first = 0;
+        nextFirst = 0;
+        nextLast = 0;
         size = 0;
         arr = (T[]) new Object[8];
     }
@@ -29,8 +30,12 @@ public class ArrayDeque<T> {
             resize(2 * arr.length);
         }
 
-        first = first == 0 ? arr.length - 1 : first - 1;
-        arr[first] = item;
+        if (nextFirst == nextLast && size == 0) {
+            nextLast = (nextLast + 1) % arr.length;
+        }
+
+        arr[nextFirst] = item;
+        nextFirst = nextFirst == 0 ? arr.length - 1 : nextFirst - 1;
         ++size;
     }
 
@@ -38,8 +43,13 @@ public class ArrayDeque<T> {
         if (size == arr.length) {
             resize(2 * arr.length);
         }
-        last = (last + 1) % arr.length;
-        arr[last] = item;
+
+        if (nextFirst == nextLast && size == 0) {
+            nextFirst = nextFirst == 0 ? arr.length - 1 : nextFirst - 1;
+        }
+
+        arr[nextLast] = item;
+        nextLast = (nextLast + 1) % arr.length;
         ++size;
     }
 
@@ -52,38 +62,47 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (int i = first; (i % arr.length) <= last; ++i) {
+        for (int i = (nextFirst + 1) % arr.length, j = 0; j < size; i = (i + 1) % arr.length, j++) {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
+
         if (size <= 0.25 * arr.length) {
             resize((int) (arr.length * 0.5));
         }
 
-        T res = arr[first];
-        arr[first] = null;
-        first = (first + 1) % arr.length;
+        T res = arr[(nextFirst + 1) % arr.length];
+        arr[(nextFirst + 1) % arr.length] = null;
+        nextFirst = (nextFirst + 1) % arr.length;
         --size;
         return res;
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
+
         if (size <= 0.25 * arr.length) {
             resize((int) (arr.length * 0.5));
         }
 
+        int last = nextLast == 0 ? arr.length - 1 : nextLast - 1;
         T res = arr[last];
         arr[last] = null;
-        last = last == 0 ? arr.length - 1 : last - 1;
+        nextLast = last;
         --size;
         return res;
     }
 
     public T get(int index) {
-        return arr[(first + index) % arr.length];
+        return arr[(nextFirst + index + 1) % arr.length];
     }
 
 }
