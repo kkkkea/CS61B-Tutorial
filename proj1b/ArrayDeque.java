@@ -1,4 +1,6 @@
-public class ArrayDeque<T> {
+import java.util.Comparator;
+
+public class ArrayDeque<T> implements Deque<T> {
     private int size;
 
     private int nextFirst;
@@ -25,6 +27,7 @@ public class ArrayDeque<T> {
         arr = (T[]) new Object[8];
     }
 
+    @Override
     public void addFirst(T item) {
         if (size == arr.length) {
             resize(2 * arr.length);
@@ -39,6 +42,7 @@ public class ArrayDeque<T> {
         ++size;
     }
 
+    @Override
     public void addLast(T item) {
         if (size == arr.length) {
             resize(2 * arr.length);
@@ -53,14 +57,17 @@ public class ArrayDeque<T> {
         ++size;
     }
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public void printDeque() {
         for (int i = (nextFirst + 1) % arr.length, j = 0; j < size; i = (i + 1) % arr.length, j++) {
             System.out.print(arr[i] + " ");
@@ -68,6 +75,7 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
+    @Override
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -84,6 +92,7 @@ public class ArrayDeque<T> {
         return res;
     }
 
+    @Override
     public T removeLast() {
         if (size == 0) {
             return null;
@@ -101,6 +110,7 @@ public class ArrayDeque<T> {
         return res;
     }
 
+    @Override
     public T get(int index) {
         return arr[(nextFirst + index + 1) % arr.length];
     }
