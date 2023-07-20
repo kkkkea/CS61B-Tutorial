@@ -1,5 +1,3 @@
-import java.util.Comparator;
-
 public class ArrayDeque<T> implements Deque<T> {
     private int size;
 
