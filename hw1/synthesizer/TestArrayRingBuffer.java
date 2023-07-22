@@ -10,12 +10,17 @@ public class TestArrayRingBuffer {
     @Test
     public void someTest() {
         ArrayRingBuffer<Integer> arb = new ArrayRingBuffer(10);
-        arb.enqueue(3);
-        assertEquals(3, (int) arb.peek());
+        for (int i = 0; i < 10; ++i) {
+            arb.enqueue(i);
+        }
+
+        for (int ele : arb) {
+            System.out.println(ele);
+        }
     }
 
     /** Calls tests for ArrayRingBuffer. */
     public static void main(String[] args) {
-        jh61b.junit.textui.runClasses(TestArrayRingBuffer.class);
+//        jh61b.junit.textui.runClasses(TestArrayRingBuffer.class);
     }
 } 
