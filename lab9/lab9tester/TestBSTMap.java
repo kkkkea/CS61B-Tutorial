@@ -13,10 +13,10 @@ public class TestBSTMap {
     @Test
     public void sanityGenericsTest() {
         try {
-            BSTMap<String, String> a = new BSTMap<String, String>();
-            BSTMap<String, Integer> b = new BSTMap<String, Integer>();
-            BSTMap<Integer, String> c = new BSTMap<Integer, String>();
-            BSTMap<Boolean, Integer> e = new BSTMap<Boolean, Integer>();
+            BSTMap<String, String> a = new BSTMap<>();
+            BSTMap<String, Integer> b = new BSTMap<>();
+            BSTMap<Integer, String> c = new BSTMap<>();
+            BSTMap<Boolean, Integer> e = new BSTMap<>();
         } catch (Exception e) {
             fail();
         }
@@ -25,7 +25,7 @@ public class TestBSTMap {
     //assumes put/size/containsKey/get work
     @Test
     public void sanityClearTest() {
-        BSTMap<String, Integer> b = new BSTMap<String, Integer>();
+        BSTMap<String, Integer> b = new BSTMap<>();
         for (int i = 0; i < 455; i++) {
             b.put("hi" + i, 1 + i);
             //make sure put is working via containsKey and get
