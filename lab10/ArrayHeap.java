@@ -463,4 +463,14 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         }
     }
 
+    @Test
+    public void testPQ() {
+        ArrayHeap<String> pq = new ArrayHeap<>();
+        pq.insert("c", 3);
+        pq.insert("i", 9);
+        pq.insert("g", 7);
+        pq.insert("d", 4);
+
+        pq.sink(5);
+    }
 }
